@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.13'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '3.2.3' // Versiyanı ehtiyaca görə saxla
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco' // 1. JaCoCo plugin-ini bura əlavə etdik
 }
 
 group = 'com.ltc'
@@ -24,6 +25,21 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+// 2. JaCoCo konfiqurasiyası
+jacoco {
+    toolVersion = "0.8.11"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // Testlər bitən kimi hesabat hazırlansın
+}
+
+// 3. Hesabatın harada və hansı formatda yaradılacağını müəyyən edən task
+jacocoTestReport {
+    dependsOn test // Hesabatın yaranması üçün testlərin qaçması şərtdir
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }
