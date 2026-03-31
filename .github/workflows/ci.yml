@@ -1,0 +1,35 @@
+# .github/workflows/ci.yml
+
+name: Java Mini Math CI
+
+# Hansı hadisələr zamanı işə düşsün?
+on:
+  push:
+    branches: [ "main" ] # "main" branch-inə kod göndəriləndə
+  pull_request:
+    branches: [ "main" ] # "main" branch-inə pull request açılanda
+
+jobs:
+  build_and_test: # İşin adı
+    runs-on: ubuntu-latest # GitHub-ın Linux serverində işləsin
+
+    steps:
+      # 1. Kodu serverə çəkmək
+      - name: Checkout project code
+        uses: actions/checkout@v4
+
+      # 2. Java mühitini qurmaq (versiya 17)
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle' # Asılılıqları yadda saxla (sürət üçün)
+
+      # 3. Gradle wrapper faylına icra icazəsi vermək
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Proyekti build etmək və testləri qaçırmaq
+      - name: Build with Gradle and Run Tests
+        run: ./gradlew build # Uğursuz test olsa, bura qırmızı olacaq
