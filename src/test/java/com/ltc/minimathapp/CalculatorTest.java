@@ -13,10 +13,9 @@ public class CalculatorTest {
     }
 
 
-
-//    @Test
-//    public void testFailScenario() {
-//        Calculator calculator = new Calculator();
-//         assertEquals(6, calculator.add(2, 3), "This test is designed to fail");
-//    }
+    @Test
+    public void testFailScenario() {
+        Calculator calculator = new Calculator();
+         assertEquals(6, calculator.add(2, 3), "This test is designed to fail");
+    }
 }
