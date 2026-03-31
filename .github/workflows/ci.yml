@@ -5,9 +5,9 @@ name: Java Mini Math CI
 # Hansı hadisələr zamanı işə düşsün?
 on:
   push:
-    branches: [ "main" ] # "main" branch-inə kod göndəriləndə
+    branches: [ "master" ] # "main" branch-inə kod göndəriləndə
   pull_request:
-    branches: [ "main" ] # "main" branch-inə pull request açılanda
+    branches: [ "master" ] # "main" branch-inə pull request açılanda
 
 jobs:
   build_and_test: # İşin adı

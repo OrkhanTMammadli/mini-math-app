@@ -12,6 +12,8 @@ public class CalculatorTest {
         assertEquals(5, calculator.add(2, 3), "2 + 3 must equal 5");
     }
 
+
+
     @Test
     public void testFailScenario() {
         Calculator calculator = new Calculator();
